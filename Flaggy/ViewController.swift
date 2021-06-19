@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         configureButton()
         
         askQuestion()
+        
     }
     
     func askQuestion() {
@@ -42,6 +43,7 @@ class ViewController: UIViewController {
         button2.layer.borderWidth = 1
         button3.layer.borderWidth = 1
     }
+    
 
 }
 
