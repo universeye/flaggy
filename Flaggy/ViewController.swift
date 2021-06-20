@@ -13,9 +13,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
     
-    var countries: [String] = ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
-    var score = 0
-    var correctAnswer = 0
+    @IBOutlet weak var scoreLabel: UILabel!
+    
+    private var countries: [String] = ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
+    private var score = 0
+    private var correctAnswer = 0
+    private var questionsNumber = 1
     
     
     override func viewDidLoad() {
@@ -24,10 +27,15 @@ class ViewController: UIViewController {
         configureButton()
         
         askQuestion()
-        
+        updateScoreLabel()
     }
     
-    func askQuestion(action: UIAlertAction! = nil) {
+    private func updateScoreLabel() {
+        scoreLabel.text = "Your score: \(score)  (\(questionsNumber)/10)"
+
+    }
+    
+    private func askQuestion(action: UIAlertAction! = nil) {
         
         countries.shuffle()
         button1.setImage(UIImage(named: countries[0]), for: .normal)
@@ -40,24 +48,38 @@ class ViewController: UIViewController {
     
     
     @IBAction func buttonTapped(_ sender: UIButton) {
-        print("Button Tapped!")
-        var title: String
+        //print("Button Tapped!")
+        //var title: String
         
         if sender.tag == correctAnswer {
-            title = "Correct"
+            //title = "Correct"
             score += 1
+            questionsNumber += 1
         } else {
-            title = "Wrong"
+            //title = "Wrong"
             score -= 1
+            questionsNumber += 1
+        }
+        updateScoreLabel()
+        askQuestion()
+        
+        if questionsNumber == 10 {
+            let ac = UIAlertController(title: "Congrats!", message: "Your score is \(score)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: restartQuestion))
+            
+            present(ac, animated: true, completion: nil)
         }
         
-        let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        
-        present(ac, animated: true, completion: nil)
     }
     
-    func configureButton() {
+    private func restartQuestion(action: UIAlertAction! = nil) {
+        askQuestion()
+        score = 0
+        questionsNumber = 0
+        updateScoreLabel()
+    }
+    
+    private func configureButton() {
         button1.layer.borderColor = UIColor.lightGray.cgColor
         button2.layer.borderColor = UIColor.lightGray.cgColor
         button3.layer.borderColor = UIColor.lightGray.cgColor

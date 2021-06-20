@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="164" translatesAutoresizingMaskIntoConstraints="NO" id="WqW-CS-xX8">
-                                <rect key="frame" x="107" y="154" width="200" height="628"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="120" translatesAutoresizingMaskIntoConstraints="NO" id="WqW-CS-xX8">
+                                <rect key="frame" x="107" y="198" width="200" height="540"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkH-72-fL6">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
@@ -27,14 +27,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dw2-GL-X0L">
-                                        <rect key="frame" x="0.0" y="264" width="200" height="100"/>
+                                        <rect key="frame" x="0.0" y="220" width="200" height="100"/>
                                         <state key="normal" image="france"/>
                                         <connections>
                                             <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gqg-4A-9Xm"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuJ-Ty-hDh">
-                                        <rect key="frame" x="0.0" y="528" width="200" height="100"/>
+                                        <rect key="frame" x="0.0" y="440" width="200" height="100"/>
                                         <state key="normal" image="estonia"/>
                                         <connections>
                                             <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VvH-av-orf"/>
@@ -42,10 +42,18 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3z-UZ-r3X">
+                                <rect key="frame" x="186.5" y="146.5" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="J3z-UZ-r3X" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Ale-Ue-ZNt"/>
+                            <constraint firstItem="WqW-CS-xX8" firstAttribute="top" secondItem="J3z-UZ-r3X" secondAttribute="bottom" constant="31" id="SB9-sU-jBW"/>
                             <constraint firstItem="WqW-CS-xX8" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-7" id="X20-Y4-WIl"/>
                             <constraint firstItem="WqW-CS-xX8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="pNk-M3-0ed"/>
                         </constraints>
@@ -55,6 +63,7 @@
                         <outlet property="button1" destination="OkH-72-fL6" id="hbF-x9-eeh"/>
                         <outlet property="button2" destination="Dw2-GL-X0L" id="P9G-Nd-lhW"/>
                         <outlet property="button3" destination="GuJ-Ty-hDh" id="qQZ-pu-9aX"/>
+                        <outlet property="scoreLabel" destination="J3z-UZ-r3X" id="2Bq-3L-Bor"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
