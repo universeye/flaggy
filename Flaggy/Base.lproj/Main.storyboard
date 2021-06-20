@@ -16,28 +16,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkH-72-fL6">
-                                <rect key="frame" x="107" y="100" width="200" height="100"/>
-                                <state key="normal" image="us"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuJ-Ty-hDh">
-                                <rect key="frame" x="107" y="647" width="200" height="100"/>
-                                <state key="normal" image="estonia"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dw2-GL-X0L">
-                                <rect key="frame" x="107" y="398" width="200" height="100"/>
-                                <state key="normal" image="france"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="164" translatesAutoresizingMaskIntoConstraints="NO" id="WqW-CS-xX8">
+                                <rect key="frame" x="107" y="154" width="200" height="628"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkH-72-fL6">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                                        <state key="normal" image="us"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ag-uh-pEC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dw2-GL-X0L">
+                                        <rect key="frame" x="0.0" y="264" width="200" height="100"/>
+                                        <state key="normal" image="france"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gqg-4A-9Xm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuJ-Ty-hDh">
+                                        <rect key="frame" x="0.0" y="528" width="200" height="100"/>
+                                        <state key="normal" image="estonia"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VvH-av-orf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Dw2-GL-X0L" firstAttribute="top" secondItem="OkH-72-fL6" secondAttribute="bottom" constant="198" id="jrC-e2-CZn"/>
-                            <constraint firstItem="Dw2-GL-X0L" firstAttribute="centerX" secondItem="OkH-72-fL6" secondAttribute="centerX" id="m8O-04-LE3"/>
-                            <constraint firstItem="OkH-72-fL6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="s1O-sd-xjA"/>
-                            <constraint firstItem="GuJ-Ty-hDh" firstAttribute="top" secondItem="Dw2-GL-X0L" secondAttribute="bottom" constant="149" id="tQD-aY-SVY"/>
-                            <constraint firstItem="GuJ-Ty-hDh" firstAttribute="centerX" secondItem="Dw2-GL-X0L" secondAttribute="centerX" id="ueR-73-yvX"/>
-                            <constraint firstItem="OkH-72-fL6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="zBN-1J-Fcw"/>
+                            <constraint firstItem="WqW-CS-xX8" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-7" id="X20-Y4-WIl"/>
+                            <constraint firstItem="WqW-CS-xX8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="pNk-M3-0ed"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5Hh-PF-EvD"/>
