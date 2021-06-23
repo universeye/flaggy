@@ -7,13 +7,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+enum plusOrMinus {
+    case correct
+    case wrong
+}
 
+class ViewController: UIViewController {
+    
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
     
     @IBOutlet weak var scoreLabel: UILabel!
+    
+    private let animatedLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        return label
+    }()
     
     private var countries: [String] = ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
     private var score = 0
@@ -28,11 +39,20 @@ class ViewController: UIViewController {
         
         askQuestion()
         updateScoreLabel()
+        
+        view.addSubview(animatedLabel)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        animatedLabel.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        animatedLabel.center = CGPoint(x: 230, y: 130)
+        animatedLabel.alpha = 0
+        animatedLabel.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
     }
     
     private func updateScoreLabel() {
         scoreLabel.text = "Your score: \(score)  (\(questionsNumber)/10)"
-
+        
     }
     
     private func askQuestion(action: UIAlertAction! = nil) {
@@ -48,22 +68,22 @@ class ViewController: UIViewController {
     
     
     @IBAction func buttonTapped(_ sender: UIButton) {
-        //print("Button Tapped!")
-        //var title: String
         
         if sender.tag == correctAnswer {
-            //title = "Correct"
             score += 1
-            questionsNumber += 1
+            showAnimateLabel(when: .correct)
         } else {
-            //title = "Wrong"
             score -= 1
-            questionsNumber += 1
+            showAnimateLabel(when: .wrong)
         }
-        updateScoreLabel()
+        
         askQuestion()
         
-        if questionsNumber == 10 {
+        if questionsNumber <= 9 {
+            questionsNumber += 1
+            updateScoreLabel()
+        } else {
+            updateScoreLabel()
             let ac = UIAlertController(title: "Congrats!", message: "Your score is \(score)", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: restartQuestion))
             
@@ -72,10 +92,43 @@ class ViewController: UIViewController {
         
     }
     
+    private func showAnimateLabel(when: plusOrMinus) {
+        
+        switch when {
+        
+        case .correct:
+            animatedLabel.text = "+1"
+            
+            UIView.animate(withDuration: 0.4, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+                self.animatedLabel.alpha = 1
+                self.animatedLabel.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+                self.animatedLabel.center = CGPoint(x: 240, y: 110)
+            }, completion: nil)
+        case .wrong:
+            animatedLabel.text = "-1"
+            
+            UIView.animate(withDuration: 0.4, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+                self.animatedLabel.alpha = 1
+                self.animatedLabel.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+                self.animatedLabel.center = CGPoint(x: 240, y: 150)
+            }, completion: nil)
+        }
+        print("animation")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+                self.animatedLabel.alpha = 0
+                self.animatedLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
+                self.animatedLabel.center = CGPoint(x: 230, y: 130)
+                //self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
+    
     private func restartQuestion(action: UIAlertAction! = nil) {
         askQuestion()
         score = 0
-        questionsNumber = 0
+        questionsNumber = 1
         updateScoreLabel()
     }
     
@@ -89,7 +142,7 @@ class ViewController: UIViewController {
         button3.layer.borderWidth = 1
     }
     
-
+    
 }
 
 
