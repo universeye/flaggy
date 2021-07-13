@@ -1,5 +1,5 @@
 # Porjects 2: Flaggy
-Hacking with swift project 4: Word Scramble, with some extra feature added myself like  points animation, and wrong answer sound.
+Hacking with swift project 2: Flaggy, with some extra feature added myself like  points animation, and wrong answer sound.
 
 # Menu
 * [Screenshots](#screenshots)
